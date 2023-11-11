@@ -1,20 +1,31 @@
 function playRound(playerSelection , computerSelection) {
+    playerSelection = playerSelection.toLowerCase();
+
     if(playerSelection == 'rock' && computerSelection == 'paper'){
+        computerScore++;
         return "You Lose! Paper beats Rock";
     }else if (playerSelection == 'paper' && computerSelection == 'scissors'){
+        computerScore++;
         return "You Lose! Scissors beats paper";
     }else if (playerSelection == 'scissors' && computerSelection == 'rock'){
+        computerScore++;
         return "You Lose! Rock beats Scissors";
     }else if (playerSelection == 'scissors' && computerSelection == 'paper'){
+        playerScore++;
         return "You Win! Scissors beats paper";
-    }else if (playerSelection == 'Paper' && computerSelection == 'rock'){
+    }else if (playerSelection == 'paper' && computerSelection == 'rock'){
+        playerScore++;
         return "You Win! Paper beats Rock";
     }else if (playerSelection == 'rock' && computerSelection == 'scissors'){
+        playerScore++;
         return "You Win! Rock beats Scissors";
     }else{
         return "draw";
     }
 }
+
+let playerScore = 0;
+let computerScore = 0;
 
 function getComputerChoice(){
     const pick = Math.floor(Math.random() * 3);
@@ -32,7 +43,16 @@ function getComputerChoice(){
     return res;
 }
 
-const playersChoice = 'rock';
-const computersChoice = getComputerChoice();
+function game(){
+    for(i = 1; i <= 5; i++){
+        const playersChoice = prompt('Write your weapon:');
+        const computersChoice = getComputerChoice();
+        console.log(playRound(playersChoice, computersChoice));
+    }
+    let result = (playerScore > computerScore)?`You Won! your score: ${playerScore} computer score: ${computerScore}` :(playerScore < computerScore)? `Computer Won! your score: ${playerScore} computer score: ${computerScore}`: `Draw! your score: ${playerScore} computer score: ${computerScore}`;
+    console.log(result);
+}
+game();
 
-console.log(playRound(playersChoice, computersChoice));
+
+
