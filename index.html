@@ -3,9 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
     <title>Rock Paper Scissors</title>
 </head>
 <body>
+    <div class="container">
+        <h3>Choose your weapon!</h3>
+        <div class="buttons">
+            <i class="fa-solid fa-hand-fist" id="rock" title="rock"></i>
+            <i class="fa-solid fa-hand" id="paper" title="paper"></i>
+            <i class="fa-solid fa-hand-scissors"></i>
+        </div>
+        <div class="versus">
+            <div id="player-weapon">
+                <h5>your weapon</h5>
+                <i class="fa-solid fa-hand-fist" title="rock"></i>
+            </div>
+            <h2>VS</h2>
+            <div id="enemy-weapon">
+                <h5>enemy's weapon</h5>
+                <i class="fa-solid fa-hand-scissors" title="rock"></i>
+            </div>
+        </div>
+    </div>
     <script src="app.js"></script>
 </body>
 </html>
