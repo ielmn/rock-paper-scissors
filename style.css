@@ -1,0 +1,21 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+    text-align: center;
+}
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: rgb(13,17,23);
+    font-size: 1.3rem;
+}
+
+.container {
+    width: 350px;
+    height: auto;
+    padding: 25px;
+    background: rgba(189, 189, 189, 0.7);
+    border-radius: 20px;
+}
