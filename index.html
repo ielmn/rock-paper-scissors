@@ -10,21 +10,27 @@
 <body>
     <div class="container">
         <h3>Choose your weapon!</h3>
-        <div class="buttons">
+        <div class="weapons">
             <i class="fa-solid fa-hand-fist" id="rock" title="rock"></i>
             <i class="fa-solid fa-hand" id="paper" title="paper"></i>
             <i class="fa-solid fa-hand-scissors"></i>
         </div>
+
         <div class="versus">
-            <div id="player-weapon">
-                <h5>your weapon</h5>
+            <div class="weapon" id="player-weapon">
                 <i class="fa-solid fa-hand-fist" title="rock"></i>
+                <h5>your weapon</h5>
             </div>
             <h2>VS</h2>
-            <div id="enemy-weapon">
-                <h5>enemy's weapon</h5>
+            <div class="weapon" id="enemy-weapon">
                 <i class="fa-solid fa-hand-scissors" title="rock"></i>
+                <h5>enemy's weapon</h5>
             </div>
+        </div>
+
+        <div class="info">
+            <h6>final round</h6>
+            <h2 id="result">You Won!</h2>
         </div>
     </div>
     <script src="app.js"></script>
