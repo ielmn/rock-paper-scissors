@@ -1,7 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,400;1,500;1,700&display=swap');
+
 * {
     margin: 0;
     box-sizing: border-box;
     text-align: center;
+    font-family: 'Mulish', sans-serif;
 }
 body {
     display: flex;
@@ -18,4 +21,36 @@ body {
     padding: 25px;
     background: rgba(189, 189, 189, 0.7);
     border-radius: 20px;
+}
+
+.weapons {
+    font-size: 2rem;
+}
+
+.weapons i{
+    margin: 15px 13px 20px;
+}
+
+.versus {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    justify-content: center;
+    font-size: 1rem;
+    align-items: center;
+}
+
+.weapon i {
+    font-size: 3.5rem;
+    margin-bottom: 8px;
+    width: 100px;
+}
+
+.info h6 {
+    margin-top: 8px;
+}
+
+.info h2 {
+    margin-top: 10px;
 }
