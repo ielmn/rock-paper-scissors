@@ -1,58 +1,79 @@
-function playRound(playerSelection , computerSelection) {
-    playerSelection = playerSelection.toLowerCase();
+const rock = document.querySelector('#rock');
+const paper = document.querySelector('#paper');
+const scissor = document.querySelector('#scissors');
+const reset = document.querySelector('#reset');
 
-    if(playerSelection == 'rock' && computerSelection == 'paper'){
-        computerScore++;
-        return "You Lose! Paper beats Rock";
-    }else if (playerSelection == 'paper' && computerSelection == 'scissors'){
-        computerScore++;
-        return "You Lose! Scissors beats paper";
-    }else if (playerSelection == 'scissors' && computerSelection == 'rock'){
-        computerScore++;
-        return "You Lose! Rock beats Scissors";
-    }else if (playerSelection == 'scissors' && computerSelection == 'paper'){
-        playerScore++;
-        return "You Win! Scissors beats paper";
-    }else if (playerSelection == 'paper' && computerSelection == 'rock'){
-        playerScore++;
-        return "You Win! Paper beats Rock";
-    }else if (playerSelection == 'rock' && computerSelection == 'scissors'){
-        playerScore++;
-        return "You Win! Rock beats Scissors";
-    }else{
-        return "draw";
-    }
-}
+let yourScore = document.querySelector('#your-score');
+let enemyScore =  document.querySelector('#enemy-score');
 
+const weapons = ['rock', 'paper', 'scissors'];
 let playerScore = 0;
 let computerScore = 0;
 
+function isGameOver(){
+    if (playerScore == 5 || computerScore == 5){
+        return true;
+    }
+    return false;
+}
+
+rock.addEventListener('click', playRound);
+paper.addEventListener('click', playRound);
+scissor.addEventListener('click', playRound);
+
+
+function playRound(e) {
+    const result = document.querySelector('#result');
+
+    let playerSelection = e.target.id;
+    let computerSelection = getComputerChoice();
+
+    if(isGameOver()){
+        isWinner(playerScore, computerScore);
+    }
+    else{
+    if(playerSelection == 'rock' && computerSelection == 'paper'){
+        computerScore++;
+        result.textContent = "Computer Won!";
+    }else if (playerSelection == 'paper' && computerSelection == 'scissors'){
+        computerScore++;
+        result.textContent = "Computer Won!";
+    }else if (playerSelection == 'scissors' && computerSelection == 'rock'){
+        computerScore++;
+        result.textContent = "Computer Won!";
+    }else if (playerSelection == 'scissors' && computerSelection == 'paper'){
+        playerScore++;
+        result.textContent = "You Won!";
+    }else if (playerSelection == 'paper' && computerSelection == 'rock'){
+        playerScore++;
+        result.textContent = "You Won!";
+    }else if (playerSelection == 'rock' && computerSelection == 'scissors'){
+        playerScore++;
+        result.textContent = "You Won!";
+    }else{
+        result.textContent = "Draw!";
+    }
+    showScore(playerScore,computerScore);
+}
+}
+
+function showScore(playerOne, playerTwo){
+    yourScore.textContent = `${playerOne}`;
+    enemyScore.textContent = `${playerTwo}`;
+};
+
 function getComputerChoice(){
     const pick = Math.floor(Math.random() * 3);
-    let res = '';
-    switch (pick) {
-        case 0:
-            res = 'rock'
-            break;
-        case 1:
-            res = 'paper'
-            break;
-        case 2:
-            res = 'scissors'
-    }
-    return res;
+    return weapons[pick];
 }
 
-function game(){
-    for(i = 1; i <= 5; i++){
-        const playersChoice = prompt('Write your weapon:');
-        const computersChoice = getComputerChoice();
-        console.log(playRound(playersChoice, computersChoice));
+function isWinner(playerOne, playerTwo) {
+
+    if (playerScore > computerScore){
+        result.textContent = "You Beat The Enemy!";
+    }else{
+        result.textContent = "You Got Beaten!";
     }
-    let result = (playerScore > computerScore)?`You Won! your score: ${playerScore} computer score: ${computerScore}` :(playerScore < computerScore)? `Computer Won! your score: ${playerScore} computer score: ${computerScore}`: `Draw! your score: ${playerScore} computer score: ${computerScore}`;
-    console.log(result);
 }
-game();
 
-
-
+reset.addEventListener('click', () => window.location.reload())
