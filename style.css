@@ -28,10 +28,15 @@ body {
     user-select: none;
 }
 
-.weapons i{
+.weapons i {
     cursor: pointer;
     margin: 15px 13px 14px;
 }
+
+.fa-bounce-hover:hover {
+    animation: fa-bounce 1s infinite linear;
+    color: #425A85;
+  }
 
 .versus {
     display: flex;
