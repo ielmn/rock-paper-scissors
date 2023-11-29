@@ -2,59 +2,95 @@ const rock = document.querySelector('#rock');
 const paper = document.querySelector('#paper');
 const scissor = document.querySelector('#scissors');
 const reset = document.querySelector('#reset');
-
-let yourScore = document.querySelector('#your-score');
-let enemyScore =  document.querySelector('#enemy-score');
+const playerWeapon = document.querySelector('#player-weapon');
+const enemyWeapon = document.querySelector('#enemy-weapon');
+const yourScore = document.querySelector('#your-score');
+const enemyScore =  document.querySelector('#enemy-score');
 
 const weapons = ['rock', 'paper', 'scissors'];
+
 let playerScore = 0;
 let computerScore = 0;
 
 function isGameOver(){
-    if (playerScore == 5 || computerScore == 5){
-        return true;
-    }
-    return false;
+    return playerScore == 5 || computerScore == 5
 }
 
-rock.addEventListener('click', playRound);
-paper.addEventListener('click', playRound);
-scissor.addEventListener('click', playRound);
+rock.addEventListener('click', () => handleSelect('rock'));
+paper.addEventListener('click', () => handleSelect('paper'));
+scissor.addEventListener('click', () => handleSelect('scissors'));
 
-
-function playRound(e) {
+function playRound(weapon, enemy) {
     const result = document.querySelector('#result');
 
-    let playerSelection = e.target.id;
-    let computerSelection = getComputerChoice();
+    let playerSelection = weapon;
+    let computerSelection = enemy;
 
-    if(isGameOver()){
-        isWinner(playerScore, computerScore);
+    if(
+    (playerSelection == 'rock' && computerSelection == 'paper') ||
+    (playerSelection == 'paper' && computerSelection == 'scissors') ||
+    (playerSelection == 'scissors' && computerSelection == 'rock')) 
+    {
+        enemyWeapon.style.animation = "fa-bounce 1s infinite linear";
+        computerScore++;
+        result.textContent = "Computer Won!";
     }
-    else{
-    if(playerSelection == 'rock' && computerSelection == 'paper'){
-        computerScore++;
-        result.textContent = "Computer Won!";
-    }else if (playerSelection == 'paper' && computerSelection == 'scissors'){
-        computerScore++;
-        result.textContent = "Computer Won!";
-    }else if (playerSelection == 'scissors' && computerSelection == 'rock'){
-        computerScore++;
-        result.textContent = "Computer Won!";
-    }else if (playerSelection == 'scissors' && computerSelection == 'paper'){
-        playerScore++;
-        result.textContent = "You Won!";
-    }else if (playerSelection == 'paper' && computerSelection == 'rock'){
-        playerScore++;
-        result.textContent = "You Won!";
-    }else if (playerSelection == 'rock' && computerSelection == 'scissors'){
+    else if (
+    (playerSelection == 'scissors' && computerSelection == 'paper') || 
+    (playerSelection == 'paper' && computerSelection == 'rock') || 
+    (playerSelection == 'rock' && computerSelection == 'scissors'))
+    {
+        playerWeapon.style.animation = "fa-bounce 1s infinite linear";
         playerScore++;
         result.textContent = "You Won!";
     }else{
+        playerWeapon.style.animation = "fa-shake 1s infinite linear";
+        enemyWeapon.style.animation = "fa-shake 1s infinite linear";
         result.textContent = "Draw!";
     }
-    showScore(playerScore,computerScore);
 }
+
+function handleSelect(weapon){
+    if(isGameOver()) return isWinner(playerScore, computerScore);
+    
+    enemyWeapon.style.animation = "";
+    playerWeapon.style.animation = "";
+
+    let computerSelection = getComputerChoice();
+    playRound(weapon, computerSelection);
+    showScore(playerScore,computerScore);
+    showChoices(weapon, computerSelection);
+
+    if(isGameOver()) isWinner(playerScore, computerScore);
+}
+
+function showChoices(playerSelection, computerSelection){
+    playerWeapon.removeAttribute('class');
+    enemyWeapon.removeAttribute('class');
+
+    switch(playerSelection) {
+        case 'rock':
+            playerWeapon.setAttribute('class', 'fa-solid fa-hand-fist')
+            break;
+        case 'paper':
+            playerWeapon.setAttribute('class', 'fa-solid fa-hand')
+            break;
+        case 'scissors':
+            playerWeapon.setAttribute('class', 'fa-solid fa-hand-scissors');
+            break;
+    }
+
+    switch(computerSelection) {
+        case 'rock':
+            enemyWeapon.setAttribute('class', 'fa-solid fa-hand-fist');
+            break;
+        case 'paper':
+            enemyWeapon.setAttribute('class', 'fa-solid fa-hand');
+            break;
+        case 'scissors':
+            enemyWeapon.setAttribute('class', 'fa-solid fa-hand-scissors');
+            break;
+    }
 }
 
 function showScore(playerOne, playerTwo){

@@ -11,28 +11,28 @@
     <div class="container">
         <h3>Choose your weapon!</h3>
         <div class="weapons">
-            <i class="fa-solid fa-hand-fist fa-bounce-hover" id="rock" title="rock"></i>
-            <i class="fa-solid fa-hand fa-bounce-hover" id="paper" title="paper"></i>
-            <i class="fa-solid fa-hand-scissors fa-bounce-hover" id="scissors" title="Scissor"></i>
+            <i class="fa-solid fa-hand-fist fa-animation-hover" id="rock" title="rock"></i>
+            <i class="fa-solid fa-hand fa-animation-hover" id="paper" title="paper"></i>
+            <i class="fa-solid fa-hand-scissors fa-animation-hover" id="scissors" title="Scissor"></i>
         </div>
 
         <div class="versus">
-            <div class="weapon" id="player-weapon">
+            <div class="weapon">
                 <h5 id="your-score">0</h5>
-                <i class="fa-solid fa-hand-fist" title="rock"></i>
-                <h5>your weapon</h5>
+                <i class="fa-solid fa-user" id="player-weapon"></i>
+                <h5>You</h5>
             </div>
             <h2>VS</h2>
-            <div class="weapon" id="enemy-weapon">
+            <div class="weapon">
                 <h5 id="enemy-score">0</h5>
-                <i class="fa-solid fa-hand-scissors" title="rock"></i>
-                <h5>enemy's weapon</h5>
+                <i class="fa-solid fa-robot" id="enemy-weapon"></i>
+                <h5>Enemy</h5>
             </div>
         </div>
 
         <div class="info">
             <h2 id="result">Ready!</h2>
-            <i id="reset" class="fas fa-undo"></i>
+            <i class="fas fa-undo fa-reset-hover" id="reset" title="Reset"></i>
         </div>
     </div>
     <script src="app.js"></script>
